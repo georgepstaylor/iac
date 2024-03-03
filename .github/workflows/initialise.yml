@@ -16,7 +16,7 @@ jobs:
       - name: Check bucket exists
         id: check-bucket-exists
         run: |
-          exists=$(aws s3api list-buckets --endpoint-url ${{ secrets.S3_ENDPOINT }} --region auto | jq -r '.Buckets[] | select(.Name | startswith("${{ github.event.repository.name }}-state"))| .Name')
+          exists=$(aws s3api list-buckets --endpoint-url ${{ secrets.S3_ENDPOINT }} --region auto| jq -r '.Buckets[] | select(.Name | startswith("${{ github.event.repository.name }}-state"))| .Name')
           echo "$exists"
           if [ -z "$exists" ]; then
             echo "Bucket does not exist"
@@ -34,9 +34,11 @@ jobs:
       - name: Create bucket if it does not exist
         run: |
           aws s3api create-bucket --bucket "${{ github.event.repository.name }}-state-${{ env.DATE }}" --endpoint-url ${{ secrets.S3_ENDPOINT }} --region auto
+      - name: Checkout
+        uses: actions/checkout@v4
       - name: Set bucket repo variable
         run: |
-          gh variable set STATE_BUCKET_NAME --body "${{ github.event.repository.name }}-state-${{ env.DATE }}" --env S3_STATE_BUCKET_NAME
+          gh variable set STATE_BUCKET_NAME --body "${{ github.event.repository.name }}-state-${{ env.DATE }}" --env lab
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Head bucket to check it exists
