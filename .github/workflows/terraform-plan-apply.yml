@@ -14,9 +14,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+            fetch-depth: 0
+
       - name: Terraform Init
-        run: terraform init 
+        run: terraform init -chdir=terraform
       - name: Terraform Plan
-        run: terraform plan -out=tfplan
+        run: terraform plan -chdir=terraform -out=tfplan
       - name: Terraform Apply
-        run: terraform apply -auto-approve tfplan
+        run: terraform apply -chdir=terraform -auto-approve tfplan
