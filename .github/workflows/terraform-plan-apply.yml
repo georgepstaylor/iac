@@ -16,11 +16,12 @@ jobs:
         uses: actions/checkout@v4
         with:
             fetch-depth: 0
-      - name: Change to terraform directory
-        run: cd terraform
       - name: Terraform Init
+        working-directory: terraform
         run: terraform init  
       - name: Terraform Plan
+        working-directory: terraform
         run: terraform plan -out=tfplan
       - name: Terraform Apply
+        working-directory: terraform
         run: terraform apply -auto-approve tfplan
