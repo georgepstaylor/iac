@@ -16,21 +16,17 @@ jobs:
       - name: Check bucket exists
         id: check-bucket-exists
         run: |
-          aws s3api list-buckets --endpoint-url ${{ secrets.S3_ENDPOINT }} --region auto
-
-          aws s3api list-buckets --endpoint-url ${{ secrets.S3_ENDPOINT }} --region auto | jq -r '.Buckets[] | select(.Name | startswith("${{ github.event.repository.name }}-state"))| .Name
-
-        #   exists=$(aws s3api list-buckets --endpoint-url ${{ secrets.S3_ENDPOINT }} | jq -r '.Buckets[] | select(.Name | startswith("${{ github.event.repository.name }}-state"))| .Name')
-        #   echo "$exists"
-        #   if [ -z "$exists" ]; then
-        #     echo "Bucket does not exist"
-        #     echo "Safe to create new state bucket"
-        #   else
-        #     echo "Bucket exists"
-        #     echo "Bucket name: $exists"
-        #     echo "Remove bucket before re-initialising"
-        #     exit 1
-        #   fi
+          exists=$(aws s3api list-buckets --endpoint-url ${{ secrets.S3_ENDPOINT }} --region auto | jq -r '.Buckets[] | select(.Name | startswith("${{ github.event.repository.name }}-state"))| .Name')
+          echo "$exists"
+          if [ -z "$exists" ]; then
+            echo "Bucket does not exist"
+            echo "Safe to create new state bucket"
+          else
+            echo "Bucket exists"
+            echo "Bucket name: $exists"
+            echo "Remove bucket before re-initialising"
+            exit 1
+          fi
       - name: Set date string
         id: set-date
         run: |
