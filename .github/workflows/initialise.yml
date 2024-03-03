@@ -30,7 +30,7 @@ jobs:
       - name: Set date string
         id: set-date
         run: |
-          echo "DATE=$(date '+%Y-%m-%d')" >> GITHUB_ENV
+          echo "DATE=$(date '+%Y-%m-%d')" >> $GITHUB_ENV
       - name: Create bucket if it does not exist
         run: |
           aws s3api create-bucket --bucket "${{ github.event.repository.name }}-state-${{ env.DATE }}" --endpoint-url ${{ secrets.S3_ENDPOINT }}
