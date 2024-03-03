@@ -36,7 +36,7 @@ jobs:
           aws s3api create-bucket --bucket "${{ github.event.repository.name }}-state-${{ env.DATE }}" --endpoint-url ${{ secrets.S3_ENDPOINT }} --region auto
       - name: Set bucket repo variable
         run: |
-          gh variable set STATE_BUCKET_NAME --repository ${{ github.event.repository.name }} --body "${{ github.event.repository.name }}-state-${{ env.DATE }}" --env S3_STATE_BUCKET_NAME
+          gh variable set STATE_BUCKET_NAME --body "${{ github.event.repository.name }}-state-${{ env.DATE }}" --env S3_STATE_BUCKET_NAME
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Head bucket to check it exists
