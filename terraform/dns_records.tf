@@ -170,4 +170,3 @@ resource "cloudflare_record" "terraform_managed_resource_676fbcc5d0b1480c79bab7f
   value   = "protonmail-verification=00798335617c9dab65dd8dedb6980d76846e97cb"
   zone_id = "cce561dfc9c6775ac495f13cf8b76696"
 }
-
