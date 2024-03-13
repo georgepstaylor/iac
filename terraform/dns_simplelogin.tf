@@ -52,4 +52,5 @@ resource "cloudflare_record" "dkim" {
   ttl     = 600
   type    = "CNAME"
   value   = count.index == 0 ? "dkim._domainkey.simplelogin.co." : "dkim0${count.index + 1}._domainkey.simplelogin.co."
+  zone_id = data.cloudflare_zone.simplelogin.id
 }
