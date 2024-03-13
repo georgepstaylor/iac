@@ -1,11 +1,11 @@
-# resource "cloudflare_record" "simplelogin_verification" {
-#   name    = var.SIMPLELOGIN_ANONYMOUS_DOMAIN
-#   proxied = false
-#   ttl     = 60
-#   type    = "TXT"
-#   value   = "sl-verification=qwmujktghmdbgjjlfrqmnabavbuvzu"
-#   zone_id = data.cloudflare_zone.simplelogin.id
-# }
+resource "cloudflare_record" "simplelogin_verification" {
+  name    = var.SIMPLELOGIN_ANONYMOUS_DOMAIN
+  proxied = false
+  ttl     = 60
+  type    = "TXT"
+  value   = "sl-verification=qwmujktghmdbgjjlfrqmnabavbuvzu"
+  zone_id = data.cloudflare_zone.simplelogin.id
+}
 
 resource "cloudflare_record" "simplelogin_mx" {
   name     = var.SIMPLELOGIN_ANONYMOUS_DOMAIN
@@ -32,7 +32,7 @@ resource "cloudflare_record" "simplelogin_spf" {
   proxied = false
   ttl     = 600
   type    = "TXT"
-  value   = "v=spf1 include:_spf.simplelogin.co ~all"
+  value   = "v=spf1 include:simplelogin.co ~all"
   zone_id = data.cloudflare_zone.simplelogin.id
 }
 
