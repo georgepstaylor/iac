@@ -1,11 +1,11 @@
-resource "cloudflare_record" "terraform_managed_resource_c6bee13243413d5f91d0b906d4810dcf" {
-  name    = "analytics"
-  proxied = true
-  ttl     = 1
-  type    = "A"
-  value   = "81.31.103.150"
-  zone_id = "cce561dfc9c6775ac495f13cf8b76696"
-}
+# resource "cloudflare_record" "terraform_managed_resource_c6bee13243413d5f91d0b906d4810dcf" {
+#   name    = "analytics"
+#   proxied = true
+#   ttl     = 1
+#   type    = "A"
+#   value   = "81.31.103.150"
+#   zone_id = "cce561dfc9c6775ac495f13cf8b76696"
+# }
 
 resource "cloudflare_record" "terraform_managed_resource_bcbb08cb76c564eec02f35db9383d0fb" {
   name    = "auth"
@@ -16,14 +16,14 @@ resource "cloudflare_record" "terraform_managed_resource_bcbb08cb76c564eec02f35d
   zone_id = "cce561dfc9c6775ac495f13cf8b76696"
 }
 
-resource "cloudflare_record" "terraform_managed_resource_93eb07e6ab5b9772cde9599d19658289" {
-  name    = "george.dev"
-  proxied = true
-  ttl     = 1
-  type    = "A"
-  value   = "81.31.103.150"
-  zone_id = "cce561dfc9c6775ac495f13cf8b76696"
-}
+# resource "cloudflare_record" "terraform_managed_resource_93eb07e6ab5b9772cde9599d19658289" {
+#   name    = "george.dev"
+#   proxied = true
+#   ttl     = 1
+#   type    = "A"
+#   value   = "81.31.103.150"
+#   zone_id = "cce561dfc9c6775ac495f13cf8b76696"
+# }
 
 resource "cloudflare_record" "terraform_managed_resource_2e42435d1d1300d7149e5235f0dc03bd" {
   name    = "*.lab"
