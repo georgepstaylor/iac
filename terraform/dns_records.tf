@@ -54,7 +54,7 @@ resource "cloudflare_record" "terraform_managed_resource_5aaeeea75e36547abb20599
 
 resource "cloudflare_record" "terraform_managed_resource_5c1a4de59c27d84ef674dbde9e9b5fef" {
   name    = "photos"
-  proxied = true
+  proxied = false
   ttl     = 1
   type    = "A"
   value   = "151.101.64.119"
@@ -63,7 +63,7 @@ resource "cloudflare_record" "terraform_managed_resource_5c1a4de59c27d84ef674dbd
 
 resource "cloudflare_record" "terraform_managed_resource_cb54101d9c66793decd55cd4c940058c" {
   name    = "photos"
-  proxied = true
+  proxied = false
   ttl     = 1
   type    = "A"
   value   = "151.101.0.119"
@@ -81,7 +81,7 @@ resource "cloudflare_record" "terraform_managed_resource_2653189fc62c7769d5379b6
 
 resource "cloudflare_record" "terraform_managed_resource_ee93855005e87351136de4d3a9c6dfef" {
   name    = "www.photos"
-  proxied = true
+  proxied = false
   ttl     = 1
   type    = "A"
   value   = "151.101.64.119"
@@ -90,7 +90,7 @@ resource "cloudflare_record" "terraform_managed_resource_ee93855005e87351136de4d
 
 resource "cloudflare_record" "terraform_managed_resource_c2ca96b9375105cd16c3bba092227d21" {
   name    = "www.photos"
-  proxied = true
+  proxied = false
   ttl     = 1
   type    = "A"
   value   = "151.101.0.119"
