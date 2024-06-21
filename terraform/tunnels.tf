@@ -49,10 +49,10 @@ resource "cloudflare_tunnel_config" "lab" {
       service  = "http://10.0.0.10:8123"
       hostname = "ha.george.dev"
     }
-    ingress_rule {
-      service  = "http://10.0.0.10:32400"
-      hostname = "plex.george.dev"
-    }
+    # ingress_rule {
+    #   service  = "http://10.0.0.10:32400"
+    #   hostname = "plex.george.dev"
+    # }
     ingress_rule {
       service = "http://10.10.2.1:2368"
     }
@@ -87,11 +87,11 @@ resource "cloudflare_record" "george_dev_ha" {
   zone_id = "cce561dfc9c6775ac495f13cf8b76696"
 }
 
-resource "cloudflare_record" "george_dev_plex" {
-  name    = "plex"
-  proxied = true
-  ttl     = 1
-  type    = "CNAME"
-  value   = cloudflare_tunnel.lab.cname
-  zone_id = "cce561dfc9c6775ac495f13cf8b76696"
-}
+# resource "cloudflare_record" "george_dev_plex" {
+#   name    = "plex"
+#   proxied = true
+#   ttl     = 1
+#   type    = "CNAME"
+#   value   = cloudflare_tunnel.lab.cname
+#   zone_id = "cce561dfc9c6775ac495f13cf8b76696"
+# }
