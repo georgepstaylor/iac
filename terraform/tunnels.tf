@@ -85,7 +85,7 @@ resource "cloudflare_tunnel_config" "lab" {
     }
 
     ingress_rule {
-      service  = "http://10.10.10.10:8765"
+      service  = "http://10.10.10.10:8080"
       hostname = "track.george.dev"
     }
 
