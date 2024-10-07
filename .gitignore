@@ -1,3 +1,4 @@
 .terraform
 .infracost
 setup_local.sh
+.DS_Store
