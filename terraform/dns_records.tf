@@ -1,18 +1,4 @@
-resource "cloudflare_record" "terraform_managed_resource_bcbb08cb76c564eec02f35db9383d0fb" {
-  name    = "auth"
-  proxied = true
-  ttl     = 1
-  type    = "A"
-  value   = "81.31.103.150"
-  zone_id = data.cloudflare_zone.george_dev.id
-  lifecycle {
-    ignore_changes = [
-      value,
-    ]
-  }
-}
-
-resource "cloudflare_record" "terraform_managed_resource_2e42435d1d1300d7149e5235f0dc03bd" {
+resource "cloudflare_record" "george_dev_lab_wildcard" {
   name    = "*.lab"
   proxied = true
   ttl     = 1
@@ -26,7 +12,7 @@ resource "cloudflare_record" "terraform_managed_resource_2e42435d1d1300d7149e523
   }
 }
 
-resource "cloudflare_record" "terraform_managed_resource_8b9ba8c2ea97775e4c60a6c6e4ec8592" {
+resource "cloudflare_record" "george_dev_lab" {
   name    = "lab"
   proxied = true
   ttl     = 1
@@ -40,45 +26,13 @@ resource "cloudflare_record" "terraform_managed_resource_8b9ba8c2ea97775e4c60a6c
   }
 }
 
-resource "cloudflare_record" "terraform_managed_resource_5aaeeea75e36547abb20599e3679c4a5" {
-  name    = "local"
-  proxied = false
-  ttl     = 1
-  type    = "A"
-  value   = "10.10.1.2"
-  zone_id = data.cloudflare_zone.george_dev.id
-    lifecycle {
-    ignore_changes = [
-      value,
-    ]
-  }
-}
-
-resource "cloudflare_record" "terraform_managed_resource_5c1a4de59c27d84ef674dbde9e9b5fef" {
-  name    = "photos"
-  proxied = false
-  ttl     = 1
-  type    = "A"
-  value   = "151.101.64.119"
-  zone_id = data.cloudflare_zone.george_dev.id
-}
-
-resource "cloudflare_record" "terraform_managed_resource_cb54101d9c66793decd55cd4c940058c" {
-  name    = "photos"
-  proxied = false
-  ttl     = 1
-  type    = "A"
-  value   = "151.101.0.119"
-  zone_id = data.cloudflare_zone.george_dev.id
-}
-
-resource "cloudflare_record" "terraform_managed_resource_2653189fc62c7769d5379b68991baaf6" {
+resource "cloudflare_record" "george_dev_tun" {
   name    = "tun"
-  proxied = false
+  proxied = true
   ttl     = 1
   type    = "A"
-  value   = "81.31.103.148"
-  zone_id = data.cloudflare_zone.george_dev.id
+  value   = "81.31.103.150"
+  zone_id  = data.cloudflare_zone.george_dev.id
     lifecycle {
     ignore_changes = [
       value,
@@ -86,7 +40,25 @@ resource "cloudflare_record" "terraform_managed_resource_2653189fc62c7769d5379b6
   }
 }
 
-resource "cloudflare_record" "terraform_managed_resource_ee93855005e87351136de4d3a9c6dfef" {
+resource "cloudflare_record" "george_dev_photos" {
+  name    = "photos"
+  proxied = false
+  ttl     = 1
+  type    = "A"
+  value   = "151.101.64.119"
+  zone_id = data.cloudflare_zone.george_dev.id
+}
+
+resource "cloudflare_record" "george_dev_photos2" {
+  name    = "photos"
+  proxied = false
+  ttl     = 1
+  type    = "A"
+  value   = "151.101.0.119"
+  zone_id = data.cloudflare_zone.george_dev.id
+}
+
+resource "cloudflare_record" "george_dev_www_photos" {
   name    = "www.photos"
   proxied = false
   ttl     = 1
@@ -95,7 +67,7 @@ resource "cloudflare_record" "terraform_managed_resource_ee93855005e87351136de4d
   zone_id = data.cloudflare_zone.george_dev.id
 }
 
-resource "cloudflare_record" "terraform_managed_resource_c2ca96b9375105cd16c3bba092227d21" {
+resource "cloudflare_record" "george_dev_www_photos2" {
   name    = "www.photos"
   proxied = false
   ttl     = 1
@@ -104,7 +76,7 @@ resource "cloudflare_record" "terraform_managed_resource_c2ca96b9375105cd16c3bba
   zone_id = data.cloudflare_zone.george_dev.id
 }
 
-resource "cloudflare_record" "terraform_managed_resource_fc7682807a30a0c85ce76459b6db72fe" {
+resource "cloudflare_record" "protonmail_domainkey2" {
   name    = "protonmail2._domainkey"
   proxied = false
   ttl     = 1
@@ -113,16 +85,17 @@ resource "cloudflare_record" "terraform_managed_resource_fc7682807a30a0c85ce7645
   zone_id = data.cloudflare_zone.george_dev.id
 }
 
-resource "cloudflare_record" "terraform_managed_resource_4afed83be9f2f66fbb53c87fb300c042" {
+resource "cloudflare_record" "protonmail_domainkey3" {
   name    = "protonmail3._domainkey"
   proxied = false
   ttl     = 1
   type    = "CNAME"
   value   = "protonmail3.domainkey.douf5apnlpzenx6anxzujpinvbyn5fyhfbybsu4oo3ejbb5vsuzrq.domains.proton.ch."
   zone_id = data.cloudflare_zone.george_dev.id
+
 }
 
-resource "cloudflare_record" "terraform_managed_resource_512b9e2acd32f60fc66c9860d02da069" {
+resource "cloudflare_record" "protonmail_domainkey1" {
   name    = "protonmail._domainkey"
   proxied = false
   ttl     = 1
@@ -131,27 +104,21 @@ resource "cloudflare_record" "terraform_managed_resource_512b9e2acd32f60fc66c986
   zone_id = data.cloudflare_zone.george_dev.id
 }
 
-resource "cloudflare_record" "terraform_managed_resource_9c0310b4861e6b99bfbc55891f957e67" {
+resource "cloudflare_record" "george_dev_mx" {
+  for_each = {
+    "mail.protonmail.ch" = 10 
+    "mailsec.protonmail.ch" = 20
+  }
   name     = "george.dev"
-  priority = 20
+  priority = each.value
   proxied  = false
   ttl      = 1
   type     = "MX"
-  value    = "mailsec.protonmail.ch"
+  value    = each.key
   zone_id  = data.cloudflare_zone.george_dev.id
 }
 
-resource "cloudflare_record" "terraform_managed_resource_a7935a6884d08ab48cb8395ca7b6de11" {
-  name     = "george.dev"
-  priority = 10
-  proxied  = false
-  ttl      = 1
-  type     = "MX"
-  value    = "mail.protonmail.ch"
-  zone_id  = data.cloudflare_zone.george_dev.id
-}
-
-resource "cloudflare_record" "terraform_managed_resource_cc230689d57b65ceb7a3108721ac13ab" {
+resource "cloudflare_record" "protonmail_dmarc" {
   name    = "_dmarc"
   proxied = false
   ttl     = 1
@@ -160,7 +127,7 @@ resource "cloudflare_record" "terraform_managed_resource_cc230689d57b65ceb7a3108
   zone_id = data.cloudflare_zone.george_dev.id
 }
 
-resource "cloudflare_record" "terraform_managed_resource_ef7fc47fa327a2a17184770bb0dca1e1" {
+resource "cloudflare_record" "protonmail_spf" {
   name    = "george.dev"
   proxied = false
   ttl     = 1
@@ -169,7 +136,7 @@ resource "cloudflare_record" "terraform_managed_resource_ef7fc47fa327a2a17184770
   zone_id = data.cloudflare_zone.george_dev.id
 }
 
-resource "cloudflare_record" "terraform_managed_resource_676fbcc5d0b1480c79bab7fe7f73d1c1" {
+resource "cloudflare_record" "protonmail_verification" {
   name    = "george.dev"
   proxied = false
   ttl     = 1
