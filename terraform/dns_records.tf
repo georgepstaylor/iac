@@ -141,6 +141,6 @@ resource "cloudflare_record" "protonmail_verification" {
   proxied = false
   ttl     = 1
   type    = "TXT"
-  value   = "protonmail-verification=00798335617c9dab65dd8dedb6980d76846e97cb"
+  value   = "protonmail-verification=d87dd8341c600dc15ceaffa9a7fa0a47ca719575"
   zone_id = data.cloudflare_zone.george_dev.id
 }
