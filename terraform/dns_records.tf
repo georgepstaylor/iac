@@ -1,6 +1,6 @@
 resource "cloudflare_record" "george_dev_lab_wildcard" {
   name    = "*.lab"
-  proxied = true
+  proxied = false
   ttl     = 1
   type    = "A"
   value   = "81.31.103.150"
@@ -14,7 +14,7 @@ resource "cloudflare_record" "george_dev_lab_wildcard" {
 
 resource "cloudflare_record" "george_dev_lab" {
   name    = "lab"
-  proxied = true
+  proxied = false
   ttl     = 1
   type    = "A"
   value   = "81.31.103.150"
@@ -28,7 +28,7 @@ resource "cloudflare_record" "george_dev_lab" {
 
 resource "cloudflare_record" "george_dev_tun" {
   name    = "tun"
-  proxied = true
+  proxied = false
   ttl     = 1
   type    = "A"
   value   = "81.31.103.150"
