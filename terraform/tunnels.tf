@@ -90,6 +90,11 @@ resource "cloudflare_tunnel_config" "lab" {
     }
 
     ingress_rule {
+      service  = "http://10.10.10.11"
+      hostname = "shhmas.george.dev"
+    }
+
+    ingress_rule {
       service = "http://10.10.2.1:2368"
     }
   }
@@ -125,6 +130,16 @@ resource "cloudflare_record" "george_dev_ha" {
 
 resource "cloudflare_record" "george_dev_track" {
   name    = "track"
+  proxied = true
+  ttl     = 1
+  type    = "CNAME"
+  value   = cloudflare_tunnel.lab.cname
+  zone_id = data.cloudflare_zone.george_dev.id
+}
+
+
+resource "cloudflare_record" "george_dev_shhmas" {
+  name    = "shhmas"
   proxied = true
   ttl     = 1
   type    = "CNAME"
