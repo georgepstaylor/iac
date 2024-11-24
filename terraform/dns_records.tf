@@ -1,3 +1,5 @@
+# Note: TTL = 1 means automatic TTL on cloudflare
+
 resource "cloudflare_record" "george_dev_lab_wildcard" {
   name    = "*.lab"
   proxied = false
@@ -147,7 +149,10 @@ resource "cloudflare_record" "protonmail_verification" {
 
 
 resource "cloudflare_record" "bsky_social_george_dev" {
-  name  = "_atproto"
-  type  = "TXT"
-  value = "did=did:plc:hka5idgcdzfbfn6h2l65kc5g"
+  name    = "_atproto"
+  type    = "TXT"
+  ttl     = 1
+  proxied = false
+  value   = "did=did:plc:hka5idgcdzfbfn6h2l65kc5g"
+  zone_id = data.cloudflare_zone.george_dev.id
 }
