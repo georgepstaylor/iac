@@ -1,33 +1,4 @@
 # Note: TTL = 1 means automatic TTL on cloudflare
-
-resource "cloudflare_record" "george_dev_lab_wildcard" {
-  name    = "*.lab"
-  proxied = false
-  ttl     = 1
-  type    = "A"
-  value   = "81.31.103.150"
-  zone_id = data.cloudflare_zone.george_dev.id
-  lifecycle {
-    ignore_changes = [
-      value,
-    ]
-  }
-}
-
-resource "cloudflare_record" "george_dev_lab" {
-  name    = "lab"
-  proxied = false
-  ttl     = 1
-  type    = "A"
-  value   = "81.31.103.150"
-  zone_id = data.cloudflare_zone.george_dev.id
-  lifecycle {
-    ignore_changes = [
-      value,
-    ]
-  }
-}
-
 resource "cloudflare_record" "george_dev_tun" {
   name    = "tun"
   proxied = false

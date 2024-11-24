@@ -85,13 +85,45 @@ resource "cloudflare_tunnel_config" "lab" {
     }
 
     ingress_rule {
+      service  = "http://10.10.82.149"
+      hostname = "coolify.george.dev"
+      origin_request {
+        bastion_mode             = false
+        disable_chunked_encoding = false
+        http2_origin             = false
+        keep_alive_connections   = 0
+        no_happy_eyeballs        = false
+        no_tls_verify            = false
+        proxy_port               = 0
+        # (9 unchanged attributes hidden)
+        access {
+          aud_tag = [
+            "b9d7639b037a6921810c5fe8de245bf425bb68cf40124a610d55ba163ded95d9",
+          ]
+          required  = true
+          team_name = "georgetaylor"
+        }
+      }
+    }
+
+    ingress_rule {
       service  = "http://10.10.10.10:8080"
       hostname = "track.george.dev"
     }
 
     ingress_rule {
-      service  = "http://10.10.10.11"
+      service  = "http://10.10.82.149"
       hostname = "shhmas.george.dev"
+    }
+
+    ingress_rule {
+      service  = "http://10.10.82.149"
+      hostname = "*.shhmas.george.dev"
+    }
+
+    ingress_rule {
+      service  = "http://10.10.82.149"
+      hostname = "*.lab.george.dev"
     }
 
     ingress_rule {
@@ -140,6 +172,42 @@ resource "cloudflare_record" "george_dev_track" {
 
 resource "cloudflare_record" "george_dev_shhmas" {
   name    = "shhmas"
+  proxied = true
+  ttl     = 1
+  type    = "CNAME"
+  value   = cloudflare_tunnel.lab.cname
+  zone_id = data.cloudflare_zone.george_dev.id
+}
+
+resource "cloudflare_record" "george_dev_coolify" {
+  name    = "coolify"
+  proxied = true
+  ttl     = 1
+  type    = "CNAME"
+  value   = cloudflare_tunnel.lab.cname
+  zone_id = data.cloudflare_zone.george_dev.id
+}
+
+resource "cloudflare_record" "george_dev_shhmas_wildcard" {
+  name    = "*.shhmas"
+  proxied = true
+  ttl     = 1
+  type    = "CNAME"
+  value   = cloudflare_tunnel.lab.cname
+  zone_id = data.cloudflare_zone.george_dev.id
+}
+
+resource "cloudflare_record" "george_dev_lab" {
+  name    = "lab"
+  proxied = true
+  ttl     = 1
+  type    = "CNAME"
+  value   = cloudflare_tunnel.lab.cname
+  zone_id = data.cloudflare_zone.george_dev.id
+}
+
+resource "cloudflare_record" "george_dev_lab_wildcard" {
+  name    = "*.lab"
   proxied = true
   ttl     = 1
   type    = "CNAME"
