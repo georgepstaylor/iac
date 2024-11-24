@@ -4,8 +4,8 @@ resource "cloudflare_record" "george_dev_lab_wildcard" {
   ttl     = 1
   type    = "A"
   value   = "81.31.103.150"
-  zone_id  = data.cloudflare_zone.george_dev.id
-    lifecycle {
+  zone_id = data.cloudflare_zone.george_dev.id
+  lifecycle {
     ignore_changes = [
       value,
     ]
@@ -19,7 +19,7 @@ resource "cloudflare_record" "george_dev_lab" {
   type    = "A"
   value   = "81.31.103.150"
   zone_id = data.cloudflare_zone.george_dev.id
-    lifecycle {
+  lifecycle {
     ignore_changes = [
       value,
     ]
@@ -32,8 +32,8 @@ resource "cloudflare_record" "george_dev_tun" {
   ttl     = 1
   type    = "A"
   value   = "81.31.103.150"
-  zone_id  = data.cloudflare_zone.george_dev.id
-    lifecycle {
+  zone_id = data.cloudflare_zone.george_dev.id
+  lifecycle {
     ignore_changes = [
       value,
     ]
@@ -106,7 +106,7 @@ resource "cloudflare_record" "protonmail_domainkey1" {
 
 resource "cloudflare_record" "george_dev_mx" {
   for_each = {
-    "mail.protonmail.ch" = 10 
+    "mail.protonmail.ch"    = 10
     "mailsec.protonmail.ch" = 20
   }
   name     = "george.dev"
@@ -143,4 +143,11 @@ resource "cloudflare_record" "protonmail_verification" {
   type    = "TXT"
   value   = "protonmail-verification=d87dd8341c600dc15ceaffa9a7fa0a47ca719575"
   zone_id = data.cloudflare_zone.george_dev.id
+}
+
+
+resource "cloudflare_record" "bsky_social_george_dev" {
+  name  = "_atproto"
+  type  = "TXT"
+  value = "did=did:plc:hka5idgcdzfbfn6h2l65kc5g"
 }
