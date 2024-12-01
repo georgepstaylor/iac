@@ -127,3 +127,13 @@ resource "cloudflare_record" "bsky_social_george_dev" {
   value   = "did=did:plc:hka5idgcdzfbfn6h2l65kc5g"
   zone_id = data.cloudflare_zone.george_dev.id
 }
+
+
+resource "cloudflare_record" "status_george_dev" {
+  name    = "status"
+  type    = "CNAME"
+  ttl     = 1
+  proxied = false
+  value   = "georgepstaylor.github.io"
+  zone_id = data.cloudflare_zone.george_dev.id
+}
