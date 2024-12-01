@@ -53,11 +53,9 @@ resource "cloudflare_tunnel_config" "lab" {
         no_happy_eyeballs        = false
         no_tls_verify            = false
         proxy_port               = 0
-        # (9 unchanged attributes hidden)
         access {
           aud_tag  = []
           required = false
-          # (1 unchanged attribute hidden)
         }
       }
     }
@@ -73,7 +71,6 @@ resource "cloudflare_tunnel_config" "lab" {
         no_happy_eyeballs        = false
         no_tls_verify            = false
         proxy_port               = 0
-        # (9 unchanged attributes hidden)
         access {
           aud_tag = [
             "e265451746ac2277533450a3022cf9f651dc05901be05fb1c2b86ca0bcbfd249",
@@ -95,7 +92,6 @@ resource "cloudflare_tunnel_config" "lab" {
         no_happy_eyeballs        = false
         no_tls_verify            = false
         proxy_port               = 0
-        # (9 unchanged attributes hidden)
         access {
           aud_tag = [
             "b9d7639b037a6921810c5fe8de245bf425bb68cf40124a610d55ba163ded95d9",
