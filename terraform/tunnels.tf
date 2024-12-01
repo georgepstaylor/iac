@@ -11,11 +11,6 @@ resource "random_string" "lab_tunnel_secret" {
   override_special = "_%@"
 }
 
-# output "tunnel_auth_token" {
-#   value     = nonsensitive(cloudflare_tunnel.lab.tunnel_token)
-#   sensitive = false
-# }
-
 resource "cloudflare_tunnel_route" "lab" {
   account_id         = data.cloudflare_accounts.gt_lab.accounts[0].id
   tunnel_id          = cloudflare_tunnel.lab.id
@@ -92,13 +87,13 @@ resource "cloudflare_tunnel_config" "lab" {
         no_happy_eyeballs        = false
         no_tls_verify            = false
         proxy_port               = 0
-        access {
-          aud_tag = [
-            "b9d7639b037a6921810c5fe8de245bf425bb68cf40124a610d55ba163ded95d9",
-          ]
-          required  = true
-          team_name = "georgetaylor"
-        }
+#        access {
+#          aud_tag = [
+#            "b9d7639b037a6921810c5fe8de245bf425bb68cf40124a610d55ba163ded95d9",
+#          ]
+#          required  = true
+#          team_name = "georgetaylor"
+#        }
       }
     }
 
