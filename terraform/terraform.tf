@@ -4,12 +4,16 @@ terraform {
       source  = "cloudflare/cloudflare"
       version = "~> 4.0"
     }
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
   }
   required_version = "~> 1.7"
 
   backend "s3" {
-    key    = "terraform.tfstate"
-    region = "auto"
+    key                         = "terraform.tfstate"
+    region                      = "auto"
     skip_credentials_validation = true
     skip_region_validation      = true
     skip_requesting_account_id  = true
@@ -25,7 +29,8 @@ terraform {
     */
 
 }
+
 provider "cloudflare" {
-  # token and email are set in the environment vars 
+  # token and email are set in the environment vars
   # `CLOUDFLARE_EMAIL` and `CLOUDFLARE_API_TOKEN` respectively
 }
