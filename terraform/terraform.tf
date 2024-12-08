@@ -34,3 +34,7 @@ provider "cloudflare" {
   # token and email are set in the environment vars
   # `CLOUDFLARE_EMAIL` and `CLOUDFLARE_API_TOKEN` respectively
 }
+
+provider "aws" {
+  region = "eu-west-2"
+}

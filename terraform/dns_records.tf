@@ -105,7 +105,7 @@ resource "cloudflare_record" "protonmail_spf" {
   proxied = false
   ttl     = 1
   type    = "TXT"
-  value   = "v=spf1 include:_spf.protonmail.ch ~all"
+  value   = "v=spf1 include:_spf.protonmail.ch include:amazonses.com ~all"
   zone_id = data.cloudflare_zone.george_dev.id
 }
 
@@ -118,7 +118,6 @@ resource "cloudflare_record" "protonmail_verification" {
   zone_id = data.cloudflare_zone.george_dev.id
 }
 
-
 resource "cloudflare_record" "bsky_social_george_dev" {
   name    = "_atproto"
   type    = "TXT"
@@ -127,7 +126,6 @@ resource "cloudflare_record" "bsky_social_george_dev" {
   value   = "did=did:plc:hka5idgcdzfbfn6h2l65kc5g"
   zone_id = data.cloudflare_zone.george_dev.id
 }
-
 
 resource "cloudflare_record" "status_george_dev" {
   name    = "status"
