@@ -32,10 +32,10 @@ resource "cloudflare_tunnel_config" "lab" {
       enabled = true
     }
 
-    ingress_rule {
-      service  = "http://10.10.2.1:2368"
-      hostname = "george.dev"
-    }
+    #ingress_rule {
+    #  service  = "http://10.10.2.1:2368"
+    #  hostname = "george.dev"
+    #}
 
     ingress_rule {
       service  = "http://10.10.3.2:8000"
@@ -118,19 +118,19 @@ resource "cloudflare_tunnel_config" "lab" {
     }
 
     ingress_rule {
-      service = "http://10.10.2.1:2368"
+     service = "http://10.10.2.1:2368"
     }
   }
 }
 
-resource "cloudflare_record" "george_dev_ghost" {
-  name    = "george.dev"
-  proxied = true
-  ttl     = 1
-  type    = "CNAME"
-  value   = cloudflare_tunnel.lab.cname
-  zone_id = data.cloudflare_zone.george_dev.id
-}
+#resource "cloudflare_record" "george_dev_ghost" {
+#  name    = "george.dev"
+#  proxied = true
+#  ttl     = 1
+#  type    = "CNAME"
+#  value   = cloudflare_tunnel.lab.cname
+#  zone_id = data.cloudflare_zone.george_dev.id
+#}
 
 
 resource "cloudflare_record" "george_dev_analytics" {
