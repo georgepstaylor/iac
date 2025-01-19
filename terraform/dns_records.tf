@@ -131,27 +131,46 @@ resource "cloudflare_record" "status_george_dev" {
   name    = "status"
   type    = "CNAME"
   ttl     = 1
-  proxied = false
+  proxied = true
   value   = "georgepstaylor.github.io"
   zone_id = data.cloudflare_zone.george_dev.id
 }
 
 resource "cloudflare_record" "george_dev_ghp_a" {
   for_each = toset(["185.199.108.153", "185.199.109.153", "185.199.110.153", "185.199.111.153"])
-  name    = "@"
-  type    = "A"
-  ttl     = 1
-  proxied = false
-  value   = each.key
-  zone_id = data.cloudflare_zone.george_dev.id
+  name     = "@"
+  type     = "A"
+  ttl      = 1
+  proxied  = true
+  value    = each.key
+  zone_id  = data.cloudflare_zone.george_dev.id
 }
 
 resource "cloudflare_record" "george_dev_ghp_aaaa" {
   for_each = toset(["2606:50c0:8000::153", "2606:50c0:8001::153", "2606:50c0:8002::153", "2606:50c0:8003::153"])
-  name    = "@"
+  name     = "@"
+  type     = "AAAA"
+  ttl      = 1
+  proxied  = true
+  value    = each.key
+  zone_id  = data.cloudflare_zone.george_dev.id
+}
+
+
+resource "cloudflare_record" "www_george_dev_ghp_a" {
+  name    = "www"
+  type    = "A"
+  ttl     = 1
+  proxied = true
+  value   = "192.0.2.1" # dummy IP, cloudflare page rule will redirect to apex domain
+  zone_id = data.cloudflare_zone.george_dev.id
+}
+
+resource "cloudflare_record" "www_george_dev_ghp_aaaa" {
+  name    = "www"
   type    = "AAAA"
   ttl     = 1
-  proxied = false
-  value   = each.key
+  proxied = true
+  value   = "2001:db8::1" # dummy IP, cloudflare page rule will redirect to apex domain
   zone_id = data.cloudflare_zone.george_dev.id
 }
