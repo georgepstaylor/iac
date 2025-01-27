@@ -109,21 +109,6 @@ resource "cloudflare_tunnel_config" "lab" {
 
     ingress_rule {
       service  = "http://10.10.82.149"
-      hostname = "git.george.dev"
-
-      origin_request {
-        bastion_mode             = false
-        disable_chunked_encoding = false
-        http2_origin             = false
-        keep_alive_connections   = 0
-        no_happy_eyeballs        = false
-        no_tls_verify            = false
-        proxy_port               = 0
-      }
-    }
-
-    ingress_rule {
-      service  = "http://10.10.82.149"
       hostname = "shhmas-staging.george.dev"
     }
 
@@ -178,15 +163,6 @@ resource "cloudflare_record" "george_dev_track" {
 
 resource "cloudflare_record" "george_dev_shhmas" {
   name    = "shhmas"
-  proxied = true
-  ttl     = 1
-  type    = "CNAME"
-  value   = cloudflare_tunnel.lab.cname
-  zone_id = data.cloudflare_zone.george_dev.id
-}
-
-resource "cloudflare_record" "george_dev_gitlab" {
-  name    = "git"
   proxied = true
   ttl     = 1
   type    = "CNAME"
