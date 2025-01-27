@@ -170,6 +170,15 @@ resource "cloudflare_record" "george_dev_shhmas" {
   zone_id = data.cloudflare_zone.george_dev.id
 }
 
+resource "cloudflare_record" "george_dev_gitlab" {
+  name    = "git"
+  proxied = true
+  ttl     = 1
+  type    = "CNAME"
+  value   = cloudflare_tunnel.lab.cname
+  zone_id = data.cloudflare_zone.george_dev.id
+}
+
 resource "cloudflare_record" "george_dev_coolify" {
   name    = "coolify"
   proxied = true
