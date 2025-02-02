@@ -45,7 +45,7 @@ resource "cloudflare_record" "simplelogin_dmarc" {
   zone_id = data.cloudflare_zone.simplelogin.id
 }
 
-resource "cloudflare_record" "dkim" {
+resource "cloudflare_record" "simplogin_dkim" {
   count   = 3
   name    = count.index == 0 ? "dkim._domainkey" : "dkim0${count.index + 1}._domainkey"
   proxied = false
